@@ -1,0 +1,26 @@
+@Arya_SuperApp_WebApi_HostAddress = http://localhost:5272
+
+POST {{Arya_SuperApp_WebApi_HostAddress}}/workitem/create-workitem
+Content-Type: application/json
+
+{
+  "name": "Hello World"
+}
+
+###
+
+PATCH {{Arya_SuperApp_WebApi_HostAddress}}/workitem/update-workitem/019afe2d-30a9-70a7-b695-01e04632958d
+Content-Type: application/json
+
+{
+    "name": "Foo bar"
+}
+
+###
+
+GET {{Arya_SuperApp_WebApi_HostAddress}}/workitem/list-workitem/10/0
+Accept: application/json
+
+###
+
+DELETE {{Arya_SuperApp_WebApi_HostAddress}}/workitem/delete-workitem/019afe2d-30a9-70a7-b695-01e04632958d

@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arya.SuperApp.Application", "Arya.SuperApp.Application\Arya.SuperApp.Application.csproj", "{09593DD0-12D8-4F2E-BB8C-D0ADF12BA8B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arya.SuperApp.Domain", "Arya.SuperApp.Domain\Arya.SuperApp.Domain.csproj", "{065EB7C3-AA99-4ED6-986F-27CD89024F6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arya.SuperApp.WebApi", "Arya.SuperApp.WebApi\Arya.SuperApp.WebApi.csproj", "{508771A6-2B66-4A48-A820-3348EDBEE2F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arya.SuperApp.Infrastructure", "Arya.SuperApp.Infrastructure\Arya.SuperApp.Infrastructure.csproj", "{92970A69-25BC-408D-B85E-95BF3617FB5A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{09593DD0-12D8-4F2E-BB8C-D0ADF12BA8B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09593DD0-12D8-4F2E-BB8C-D0ADF12BA8B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09593DD0-12D8-4F2E-BB8C-D0ADF12BA8B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09593DD0-12D8-4F2E-BB8C-D0ADF12BA8B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{065EB7C3-AA99-4ED6-986F-27CD89024F6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{065EB7C3-AA99-4ED6-986F-27CD89024F6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{065EB7C3-AA99-4ED6-986F-27CD89024F6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{065EB7C3-AA99-4ED6-986F-27CD89024F6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{508771A6-2B66-4A48-A820-3348EDBEE2F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{508771A6-2B66-4A48-A820-3348EDBEE2F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{508771A6-2B66-4A48-A820-3348EDBEE2F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{508771A6-2B66-4A48-A820-3348EDBEE2F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92970A69-25BC-408D-B85E-95BF3617FB5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92970A69-25BC-408D-B85E-95BF3617FB5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92970A69-25BC-408D-B85E-95BF3617FB5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92970A69-25BC-408D-B85E-95BF3617FB5A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
