@@ -9,7 +9,7 @@ Content-Type: application/json
 
 ###
 
-PATCH {{Arya_SuperApp_WebApi_HostAddress}}/workitem/update-workitem/019afe2d-30a9-70a7-b695-01e04632958d
+PATCH {{Arya_SuperApp_WebApi_HostAddress}}/workitem/update-workitem/019b013c-1054-7198-b8ec-af7c50feb99b
 Content-Type: application/json
 
 {
@@ -19,6 +19,11 @@ Content-Type: application/json
 ###
 
 GET {{Arya_SuperApp_WebApi_HostAddress}}/workitem/list-workitem/10/0
+Accept: application/json
+
+###
+
+GET {{Arya_SuperApp_WebApi_HostAddress}}/workitem/get-workitem/019b013c-1054-7198-b8ec-af7c50feb99b
 Accept: application/json
 
 ###

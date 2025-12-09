@@ -17,7 +17,12 @@ internal class UpdateWorkItemWriteHandler(
             p.Name = request.Name;
         });
 
-        if (entity?.IsValid() ?? true) return true;
+        if (entity?.IsValid() ?? true)
+        {
+            var effectedRows = await SaveSceneAsync(request);
+            
+            return effectedRows > 0;
+        }
         
         Log(LogLevel.Error, request, $"Entity is not valid");
             

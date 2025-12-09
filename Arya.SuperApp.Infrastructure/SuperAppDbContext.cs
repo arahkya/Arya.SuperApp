@@ -50,6 +50,13 @@ public class SuperAppDbContext(DbContextOptions<SuperAppDbContext> options) : Db
         
             return entity;
         }
+
+        public async Task<TEntity?> GetAsync(Guid entityId)
+        {
+            var entity = await dbContext.Set<TEntity>().SingleOrDefaultAsync(p => p.Id == entityId);
+            
+            return entity;
+        }
     }
 
     public IRepository<TEntity> Repository<TEntity>() where TEntity : class, IEntity

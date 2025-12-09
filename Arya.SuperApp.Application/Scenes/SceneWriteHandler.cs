@@ -25,17 +25,6 @@ public abstract class SceneWriteHandler<TRequest, TSuccessResult>(IUnitOfWork un
             
             var executeResult = await ExecuteAsync(request);
 
-            var effected = await UnitOfWork.SaveChangesAsync(CancellationToken.None);
-
-            if (effected > 0) 
-            {
-                Log(LogLevel.Debug, request, $"Request Effected {effected} Records");
-            }
-            else
-            {
-                Log(LogLevel.Warning, request, $"Failed Execute Handler");
-            }
-
             result.Result = executeResult;
         }
         catch (Exception e)
@@ -46,5 +35,21 @@ public abstract class SceneWriteHandler<TRequest, TSuccessResult>(IUnitOfWork un
         Log(LogLevel.Debug, request, "End Execute Write Request");
         
         return result;
+    }
+
+    protected async Task<int> SaveSceneAsync(TRequest request)
+    {
+        var effected = await UnitOfWork.SaveChangesAsync(CancellationToken.None);
+
+        if (effected > 0) 
+        {
+            Log(LogLevel.Debug, request, $"Request Effected {effected} Records");
+        }
+        else
+        {
+            Log(LogLevel.Warning, request, $"Failed Execute Handler");
+        }
+        
+        return effected;
     }
 }

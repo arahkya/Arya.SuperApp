@@ -28,8 +28,13 @@ internal class CreateWorkItemWriteHandler(IUnitOfWork unitOfWork, ILoggerFactory
         
         await UnitOfWork.Repository<WorkItemEntity>().AddAsync(entity);
         
-        Log(LogLevel.Info, request, $"WorkItem Created ({guid})");
-        
+        var effectedRows = await SaveSceneAsync(request);
+
+        if (effectedRows > 0)
+        {
+            Log(LogLevel.Info, request, $"WorkItem Created ({guid})");
+        }
+
         return guid;
     }
 }

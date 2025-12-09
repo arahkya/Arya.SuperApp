@@ -30,6 +30,17 @@ public abstract class SceneReadHandler<TRequest, TSuccessResult>(IUnitOfWork uni
             {
                 Log(LogLevel.Info, request, $"Read {collectionResult.Count} Items");    
             }
+            else
+            {
+                if (executeResult != null)
+                {
+                    Log(LogLevel.Info, request, $"Found Item");
+                }
+                else
+                {
+                    Log(LogLevel.Warning, request, $"Item could not be found");
+                }
+            }
             
             result.Result = executeResult;
         }

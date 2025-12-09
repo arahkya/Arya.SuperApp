@@ -1,9 +1,10 @@
 using Arya.SuperApp.Application.Interfaces.Scene;
-using Arya.SuperApp.Application.Scenes;
 using Arya.SuperApp.Application.Scenes.WorkItem.CreateWorkItem;
 using Arya.SuperApp.Application.Scenes.WorkItem.DeleteWorkItem;
+using Arya.SuperApp.Application.Scenes.WorkItem.GetWorkItem;
 using Arya.SuperApp.Application.Scenes.WorkItem.ListWorkItem;
 using Arya.SuperApp.Application.Scenes.WorkItem.UpdateWorkItem;
+using Arya.SuperApp.Domain;
 using Arya.SuperApp.WebApi.ViewModels.WorkItem;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,6 +29,19 @@ public class WorkItemController : ControllerBase
         return Ok(createdWithId);
     }
 
+    [HttpGet(Name = "get-workitem")]
+    [Route("get-workitem/{id:guid}")]
+    public async Task<ActionResult> GetAsync([FromRoute] Guid id, [FromServices] ISceneHandler<GetWorkItemRequest, WorkItemEntity?> handler)
+    {
+        var request = new GetWorkItemRequest { RequestId = HttpContext.TraceIdentifier, WorkItemId = id};
+
+        var workItem = await handler.HandleAsync(request, e => null);
+        
+        if (workItem.Result is null) return NotFound();
+        
+        return Ok(workItem);
+    }
+    
     [HttpGet(Name = "list-workitem")]
     [Route("list-workitem/{pageSize:int}/{page:int}")]
     public async Task<ActionResult> ListAsync(int pageSize, int page, [FromServices] ISceneHandler<ListWorkItemRequest, ListWorkItemResponse> handler)

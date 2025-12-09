@@ -4,8 +4,10 @@ using Arya.SuperApp.Application.Providers;
 using Arya.SuperApp.Application.Scenes;
 using Arya.SuperApp.Application.Scenes.WorkItem.CreateWorkItem;
 using Arya.SuperApp.Application.Scenes.WorkItem.DeleteWorkItem;
+using Arya.SuperApp.Application.Scenes.WorkItem.GetWorkItem;
 using Arya.SuperApp.Application.Scenes.WorkItem.ListWorkItem;
 using Arya.SuperApp.Application.Scenes.WorkItem.UpdateWorkItem;
+using Arya.SuperApp.Domain;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Arya.SuperApp.Application;
@@ -19,6 +21,7 @@ public static class Startup
         serviceCollection.AddScoped<ISceneHandler<ListWorkItemRequest, ListWorkItemResponse>, ListWorkItemWriteHandler>();
         serviceCollection.AddScoped<ISceneHandler<DeleteWorkItemRequest, bool>, DeleteWorkItemWriteHandler>();
         serviceCollection.AddScoped<ISceneHandler<UpdateWorkItemRequest, bool>, UpdateWorkItemWriteHandler>();
+        serviceCollection.AddScoped<ISceneHandler<GetWorkItemRequest, WorkItemEntity?>, GetWorkItemHandler>();
         
         return serviceCollection;
     }

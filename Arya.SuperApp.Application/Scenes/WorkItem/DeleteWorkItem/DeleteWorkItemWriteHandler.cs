@@ -27,6 +27,13 @@ internal class DeleteWorkItemWriteHandler(
     {
         var canDelete = await UnitOfWork.Repository<WorkItemEntity>().DeleteAsync(request.Id);
         
+        var effectedRows = await SaveSceneAsync(request);
+
+        if (effectedRows > 0)
+        {
+            Log(LogLevel.Info, request, $"WorkItem Deleted ({request.Id})");
+        }
+        
         return canDelete;
     }
 }
