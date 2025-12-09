@@ -1,5 +1,3 @@
-using Arya.SuperApp.Application.Interfaces;
-
 namespace Arya.SuperApp.Application.Scenes;
 
 public class SceneResult<TResult> 

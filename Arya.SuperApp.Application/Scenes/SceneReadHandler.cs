@@ -1,6 +1,7 @@
 using Arya.SuperApp.Application.Exceptions;
 using Arya.SuperApp.Application.Interfaces.Data;
 using Arya.SuperApp.Application.Interfaces.Date;
+using Arya.SuperApp.Application.Interfaces.Scene;
 using Microsoft.Extensions.Logging;
 
 namespace Arya.SuperApp.Application.Scenes;
@@ -25,6 +26,11 @@ public abstract class SceneReadHandler<TRequest, TSuccessResult>(IUnitOfWork uni
             
             var executeResult = await ExecuteAsync(request);
 
+            if (executeResult is ISceneCollectionResult collectionResult)
+            {
+                Log(LogLevel.Info, request, $"Read {collectionResult.Count} Items");    
+            }
+            
             result.Result = executeResult;
         }
         catch (Exception e)
