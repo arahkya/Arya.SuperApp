@@ -1,8 +1,11 @@
 using Arya.SuperApp.Application.Interfaces.Scene;
+using Arya.SuperApp.Application.Scenes;
 using Arya.SuperApp.Application.Scenes.WorkItem.CreateWorkItem;
 using Arya.SuperApp.Application.Scenes.WorkItem.DeleteWorkItem;
 using Arya.SuperApp.Application.Scenes.WorkItem.GetWorkItem;
+using Arya.SuperApp.Application.Scenes.WorkItem.LinkWorkItem;
 using Arya.SuperApp.Application.Scenes.WorkItem.ListWorkItem;
+using Arya.SuperApp.Application.Scenes.WorkItem.ListWorkItemLinks;
 using Arya.SuperApp.Application.Scenes.WorkItem.UpdateWorkItem;
 using Arya.SuperApp.Domain;
 using Arya.SuperApp.WebApi.ViewModels.WorkItem;
@@ -76,5 +79,43 @@ public class WorkItemController : ControllerBase
         var isDeleted = await handler.HandleAsync(request, _ => false);
         
         return Ok(isDeleted);
-    } 
+    }
+
+    [HttpPatch(Name = "link-workitem")]
+    [Route("link-workitem/{id:guid}/{type}/{targetId:guid}")]
+    public async Task<ActionResult> LinkAsync([FromRoute] Guid id, [FromRoute] string type, [FromRoute] Guid targetId,
+        [FromServices] ISceneHandler<LinkWorkItemRequest, bool> handler)
+    {
+        var request = new LinkWorkItemRequest
+        {
+            RequestId = HttpContext.TraceIdentifier,
+            WorkItemId = id,
+            LinkedWorkItemId =  targetId,
+            LinkType = (LinkWorkItemRequest.WorkItemLinkTypes)Enum.Parse(typeof(LinkWorkItemRequest.WorkItemLinkTypes),type)
+        };
+        
+        var isLinked = await handler.HandleAsync(request, e => false);
+
+        if (!isLinked.Result)
+        {
+            return NotFound();
+        }
+        
+        return Ok(isLinked);
+    }
+
+    [HttpGet(Name = "get-links")]
+    [Route("get-links/{workItemId:guid}")]
+    public async Task<ActionResult> GetLinksAsync([FromRoute] Guid workItemId, [FromServices] ISceneHandler<ListWorkItemLinksRequest, SceneCollectionResult<LinkedWorkItemEntity>> handler)
+    {
+        var request = new ListWorkItemLinksRequest
+        {
+            RequestId = HttpContext.TraceIdentifier,
+            WorkItemId = workItemId
+        };
+
+        var links = await handler.HandleAsync(request, e => new SceneCollectionResult<LinkedWorkItemEntity>([]));
+        
+        return Ok(links);
+    }
 }

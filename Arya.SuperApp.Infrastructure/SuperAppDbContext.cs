@@ -8,6 +8,18 @@ public class SuperAppDbContext(DbContextOptions<SuperAppDbContext> options) : Db
 {
     public DbSet<WorkItemEntity> WorkItems { get; set; }
     
+    public DbSet<LinkedWorkItemEntity> LinkedWorkers { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<WorkItemEntity>().Navigation(p => p.LinkedWorkers).AutoInclude();
+        modelBuilder.Entity<WorkItemEntity>().HasMany(p => p.LinkedWorkers).WithOne(p => p.WorkItem).HasForeignKey(p => p.WorkItemId).OnDelete(DeleteBehavior.Cascade);
+        modelBuilder.Entity<LinkedWorkItemEntity>().Navigation(p => p.WorkItem).AutoInclude();
+        modelBuilder.Entity<LinkedWorkItemEntity>().Navigation(p => p.LinkedWorkItem).AutoInclude();
+    }
+
     internal class GenericRepository<TEntity>(SuperAppDbContext dbContext) : IRepository<TEntity> 
         where TEntity : class, IEntity
     {
@@ -56,6 +68,13 @@ public class SuperAppDbContext(DbContextOptions<SuperAppDbContext> options) : Db
             var entity = await dbContext.Set<TEntity>().SingleOrDefaultAsync(p => p.Id == entityId);
             
             return entity;
+        }
+
+        public Task<IEnumerable<TListItem>> ListWithConditionAsync<TListItem>(Func<TEntity, bool> funcWhere, Func<TEntity, TListItem> funcSelect)
+        {
+            var entity = dbContext.Set<TEntity>().Where(funcWhere).Select(funcSelect);
+            
+            return Task.FromResult(entity);
         }
     }
 

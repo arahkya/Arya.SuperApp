@@ -4,7 +4,7 @@ POST {{Arya_SuperApp_WebApi_HostAddress}}/workitem/create-workitem
 Content-Type: application/json
 
 {
-  "name": "Hello World"
+  "name": "Hello Thailand"
 }
 
 ###
@@ -29,3 +29,12 @@ Accept: application/json
 ###
 
 DELETE {{Arya_SuperApp_WebApi_HostAddress}}/workitem/delete-workitem/019afe2d-30a9-70a7-b695-01e04632958d
+
+###
+
+PATCH {{Arya_SuperApp_WebApi_HostAddress}}/workitem/link-workitem/019b0210-db74-7ce4-b532-79a7db8c82c7/Child/019b0210-ec39-764f-a8f5-f6d4b8036e2a
+
+###
+
+GET  {{Arya_SuperApp_WebApi_HostAddress}}/workitem/get-links/019b0210-db74-7ce4-b532-79a7db8c82c7
+

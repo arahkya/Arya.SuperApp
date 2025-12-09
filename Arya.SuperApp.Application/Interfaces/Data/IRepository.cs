@@ -9,4 +9,5 @@ public interface IRepository<TEntity> where TEntity : IEntity
     Task<IEnumerable<TListItem>> ListAsync<TListItem>(int page, int pageSize, Func<TEntity, TListItem> funcItem);
     Task<TEntity?> UpdateAsync(Guid id, Action<TEntity> action);
     Task<TEntity?> GetAsync(Guid entityId);
+    Task<IEnumerable<TListItem>> ListWithConditionAsync<TListItem>(Func<TEntity, bool> funcWhere, Func<TEntity, TListItem> funcSelect);
 }
