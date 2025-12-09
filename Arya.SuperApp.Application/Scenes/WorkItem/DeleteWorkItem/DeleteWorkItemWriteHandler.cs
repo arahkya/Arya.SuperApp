@@ -3,9 +3,9 @@ using Arya.SuperApp.Application.Interfaces.Date;
 using Arya.SuperApp.Domain;
 using Microsoft.Extensions.Logging;
 
-namespace Arya.SuperApp.Application.Scenes.CRUD.DeleteWorkItem;
+namespace Arya.SuperApp.Application.Scenes.WorkItem.DeleteWorkItem;
 
-public class DeleteWorkItemWriteHandler(
+internal class DeleteWorkItemWriteHandler(
     IUnitOfWork unitOfWork,
     ILoggerFactory loggerFactory,
     IDateTimeProvider dateTimeProvider)

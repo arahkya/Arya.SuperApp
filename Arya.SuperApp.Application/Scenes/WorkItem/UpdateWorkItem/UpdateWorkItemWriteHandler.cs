@@ -3,7 +3,7 @@ using Arya.SuperApp.Application.Interfaces.Date;
 using Arya.SuperApp.Domain;
 using Microsoft.Extensions.Logging;
 
-namespace Arya.SuperApp.Application.Scenes.CRUD.UpdateWorkItem;
+namespace Arya.SuperApp.Application.Scenes.WorkItem.UpdateWorkItem;
 
 internal class UpdateWorkItemWriteHandler(
     IUnitOfWork unitOfWork,

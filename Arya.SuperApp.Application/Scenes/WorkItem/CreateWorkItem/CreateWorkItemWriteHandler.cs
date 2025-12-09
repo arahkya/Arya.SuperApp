@@ -3,9 +3,9 @@ using Arya.SuperApp.Application.Interfaces.Date;
 using Arya.SuperApp.Domain;
 using Microsoft.Extensions.Logging;
 
-namespace Arya.SuperApp.Application.Scenes.CRUD.CreateWorkItem;
+namespace Arya.SuperApp.Application.Scenes.WorkItem.CreateWorkItem;
 
-public class CreateWorkItemWriteHandler(IUnitOfWork unitOfWork, ILoggerFactory loggerFactory, IDateTimeProvider dateTimeProvider) : SceneWriteHandler<CreateWorkItemRequest, Guid>(unitOfWork, loggerFactory, dateTimeProvider)
+internal class CreateWorkItemWriteHandler(IUnitOfWork unitOfWork, ILoggerFactory loggerFactory, IDateTimeProvider dateTimeProvider) : SceneWriteHandler<CreateWorkItemRequest, Guid>(unitOfWork, loggerFactory, dateTimeProvider)
 {   
     protected override async Task<Guid> ExecuteAsync(CreateWorkItemRequest request)
     {

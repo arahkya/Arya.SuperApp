@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Arya.SuperApp.Application.Scenes.CRUD.CreateWorkItem;
+namespace Arya.SuperApp.Application.Scenes.WorkItem.CreateWorkItem;
 
 public class CreateWorkItemRequest : SceneRequest
 {

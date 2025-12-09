@@ -1,4 +1,4 @@
-namespace Arya.SuperApp.Application.Scenes.CRUD.ListWorkItem;
+namespace Arya.SuperApp.Application.Scenes.WorkItem.ListWorkItem;
 
 public class ListWorkItemRequest : SceneRequest
 {

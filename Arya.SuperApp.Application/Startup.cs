@@ -1,10 +1,10 @@
 ﻿using Arya.SuperApp.Application.Interfaces.Date;
 using Arya.SuperApp.Application.Interfaces.Scene;
 using Arya.SuperApp.Application.Providers;
-using Arya.SuperApp.Application.Scenes.CRUD.CreateWorkItem;
-using Arya.SuperApp.Application.Scenes.CRUD.DeleteWorkItem;
-using Arya.SuperApp.Application.Scenes.CRUD.ListWorkItem;
-using Arya.SuperApp.Application.Scenes.CRUD.UpdateWorkItem;
+using Arya.SuperApp.Application.Scenes.WorkItem.CreateWorkItem;
+using Arya.SuperApp.Application.Scenes.WorkItem.DeleteWorkItem;
+using Arya.SuperApp.Application.Scenes.WorkItem.ListWorkItem;
+using Arya.SuperApp.Application.Scenes.WorkItem.UpdateWorkItem;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Arya.SuperApp.Application;

@@ -3,9 +3,9 @@ using Arya.SuperApp.Application.Interfaces.Date;
 using Arya.SuperApp.Domain;
 using Microsoft.Extensions.Logging;
 
-namespace Arya.SuperApp.Application.Scenes.CRUD.ListWorkItem;
+namespace Arya.SuperApp.Application.Scenes.WorkItem.ListWorkItem;
 
-public class ListWorkItemWriteHandler(
+internal class ListWorkItemWriteHandler(
     IUnitOfWork unitOfWork,
     ILoggerFactory loggerFactory,
     IDateTimeProvider dateTimeProvider)

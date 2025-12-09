@@ -1,4 +1,4 @@
-namespace Arya.SuperApp.Application.Scenes.CRUD.DeleteWorkItem;
+namespace Arya.SuperApp.Application.Scenes.WorkItem.DeleteWorkItem;
 
 public class DeleteWorkItemRequest : SceneRequest
 {

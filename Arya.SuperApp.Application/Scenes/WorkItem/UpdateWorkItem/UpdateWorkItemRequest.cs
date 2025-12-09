@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace Arya.SuperApp.Application.Scenes.CRUD.UpdateWorkItem;
+namespace Arya.SuperApp.Application.Scenes.WorkItem.UpdateWorkItem;
 
 public class UpdateWorkItemRequest : SceneRequest
 {
