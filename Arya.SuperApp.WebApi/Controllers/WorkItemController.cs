@@ -2,6 +2,7 @@ using Arya.SuperApp.Application.Interfaces.Scene;
 using Arya.SuperApp.Application.Scenes;
 using Arya.SuperApp.Application.Scenes.WorkItem.CreateWorkItem;
 using Arya.SuperApp.Application.Scenes.WorkItem.DeleteWorkItem;
+using Arya.SuperApp.Application.Scenes.WorkItem.DeleteWorkItemLink;
 using Arya.SuperApp.Application.Scenes.WorkItem.GetWorkItem;
 using Arya.SuperApp.Application.Scenes.WorkItem.LinkWorkItem;
 using Arya.SuperApp.Application.Scenes.WorkItem.ListWorkItem;
@@ -91,7 +92,7 @@ public class WorkItemController : ControllerBase
             RequestId = HttpContext.TraceIdentifier,
             WorkItemId = id,
             LinkedWorkItemId =  targetId,
-            LinkType = (LinkWorkItemRequest.WorkItemLinkTypes)Enum.Parse(typeof(LinkWorkItemRequest.WorkItemLinkTypes),type)
+            LinkType = Enum.Parse<WorkItemLinkTypes>(type)
         };
         
         var isLinked = await handler.HandleAsync(request, e => false);
@@ -117,5 +118,20 @@ public class WorkItemController : ControllerBase
         var links = await handler.HandleAsync(request, e => new SceneCollectionResult<LinkedWorkItemEntity>([]));
         
         return Ok(links);
+    }
+
+    [HttpDelete(Name = "delete-link")]
+    [Route("delete-link/{id:guid}")]
+    public async Task<ActionResult> DeleteLinkAsync([FromRoute] Guid id, [FromServices] ISceneHandler<DeleteWorkItemLinkRequest, bool> handler)
+    {
+        var request = new DeleteWorkItemLinkRequest
+        {
+            RequestId = HttpContext.TraceIdentifier,
+            Id = id
+        };
+
+        var isDelete = await handler.HandleAsync(request, e => false);
+        
+        return Ok(isDelete);
     }
 }

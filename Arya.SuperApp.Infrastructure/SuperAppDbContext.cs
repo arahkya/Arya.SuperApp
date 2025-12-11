@@ -14,10 +14,10 @@ public class SuperAppDbContext(DbContextOptions<SuperAppDbContext> options) : Db
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.Entity<WorkItemEntity>().Navigation(p => p.LinkedWorkers).AutoInclude();
+        // modelBuilder.Entity<WorkItemEntity>().Navigation(p => p.LinkedWorkers).AutoInclude();
         modelBuilder.Entity<WorkItemEntity>().HasMany(p => p.LinkedWorkers).WithOne(p => p.WorkItem).HasForeignKey(p => p.WorkItemId).OnDelete(DeleteBehavior.Cascade);
-        modelBuilder.Entity<LinkedWorkItemEntity>().Navigation(p => p.WorkItem).AutoInclude();
-        modelBuilder.Entity<LinkedWorkItemEntity>().Navigation(p => p.LinkedWorkItem).AutoInclude();
+        // modelBuilder.Entity<LinkedWorkItemEntity>().Navigation(p => p.WorkItem).AutoInclude();
+        // modelBuilder.Entity<LinkedWorkItemEntity>().Navigation(p => p.LinkedWorkItem).AutoInclude();
     }
 
     internal class GenericRepository<TEntity>(SuperAppDbContext dbContext) : IRepository<TEntity> 
@@ -25,7 +25,14 @@ public class SuperAppDbContext(DbContextOptions<SuperAppDbContext> options) : Db
     {
         public async Task AddAsync(TEntity entity)
         {
-            await dbContext.AddAsync(entity);
+            try
+            {
+                await dbContext.AddAsync(entity);
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
         }
 
         public async Task<bool> DeleteAsync(Guid id)

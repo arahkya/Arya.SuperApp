@@ -32,9 +32,13 @@ DELETE {{Arya_SuperApp_WebApi_HostAddress}}/workitem/delete-workitem/019afe2d-30
 
 ###
 
-PATCH {{Arya_SuperApp_WebApi_HostAddress}}/workitem/link-workitem/019b0210-db74-7ce4-b532-79a7db8c82c7/Child/019b0210-ec39-764f-a8f5-f6d4b8036e2a
+PATCH {{Arya_SuperApp_WebApi_HostAddress}}/workitem/link-workitem/019b0bf4-95da-734c-978d-f36e680f5b1c/Parent/019b0bf5-133d-73ab-b2ff-3ceec3368745
 
 ###
 
-GET  {{Arya_SuperApp_WebApi_HostAddress}}/workitem/get-links/019b0210-db74-7ce4-b532-79a7db8c82c7
+GET  {{Arya_SuperApp_WebApi_HostAddress}}/workitem/get-links/019b0bf4-95da-734c-978d-f36e680f5b1c
+
+###
+
+DELETE {{Arya_SuperApp_WebApi_HostAddress}}/workitem/delete-link/05140080-13e0-44ee-8f63-49b6329671cd
 

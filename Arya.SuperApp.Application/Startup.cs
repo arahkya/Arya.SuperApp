@@ -4,6 +4,7 @@ using Arya.SuperApp.Application.Providers;
 using Arya.SuperApp.Application.Scenes;
 using Arya.SuperApp.Application.Scenes.WorkItem.CreateWorkItem;
 using Arya.SuperApp.Application.Scenes.WorkItem.DeleteWorkItem;
+using Arya.SuperApp.Application.Scenes.WorkItem.DeleteWorkItemLink;
 using Arya.SuperApp.Application.Scenes.WorkItem.GetWorkItem;
 using Arya.SuperApp.Application.Scenes.WorkItem.LinkWorkItem;
 using Arya.SuperApp.Application.Scenes.WorkItem.ListWorkItem;
@@ -26,7 +27,7 @@ public static class Startup
         serviceCollection.AddScoped<ISceneHandler<GetWorkItemRequest, WorkItemEntity?>, GetWorkItemHandler>();
         serviceCollection.AddScoped<ISceneHandler<LinkWorkItemRequest, bool>, LinkWorkItemHandler>();
         serviceCollection.AddScoped<ISceneHandler<ListWorkItemLinksRequest, SceneCollectionResult<LinkedWorkItemEntity>>, ListWorkItemLinksHandler>();
-        
+        serviceCollection.AddScoped<ISceneHandler<DeleteWorkItemLinkRequest, bool>, DeleteWorkItemLinkHandler>();
         return serviceCollection;
     }
 }

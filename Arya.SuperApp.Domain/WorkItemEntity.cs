@@ -22,6 +22,11 @@ public class WorkItemEntity : EntityBase, IEntity
         {
             throw new InvalidOperationException("Cannot link to own WorkItem");
         }
+
+        if(!Enum.TryParse<WorkItemLinkTypes>(linkedWorker.LinkType,true , out var linkType))
+        {
+            throw new InvalidOperationException($"Invalid link type {linkedWorker.LinkType}");
+        }
         
         LinkedWorkers.Add(linkedWorker);
     }

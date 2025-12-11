@@ -17,6 +17,12 @@ internal class LinkWorkItemHandler(IUnitOfWork unitOfWork, ILoggerFactory logger
             CreatedOn = DateTimeProvider.Now
         };
 
+        var workItem = await UnitOfWork.Repository<WorkItemEntity>().GetAsync(linkedWorkItem.LinkedWorkItemId);
+
+        if (workItem == null) return false;
+        
+        workItem.AddLinkedWorker(linkedWorkItem);
+        
         await UnitOfWork.Repository<LinkedWorkItemEntity>().AddAsync(linkedWorkItem);
         
         var effectedRows = await UnitOfWork.SaveChangesAsync();
