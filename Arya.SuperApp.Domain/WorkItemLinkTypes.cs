@@ -5,5 +5,6 @@ public enum WorkItemLinkTypes
     Child,
     Parent,
     Related,
-    Dependent
+    Dependent,
+    Successor
 }

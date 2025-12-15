@@ -16,14 +16,18 @@ internal class LinkWorkItemHandler(IUnitOfWork unitOfWork, ILoggerFactory logger
             LinkType = request.LinkType.ToString(),
             CreatedOn = DateTimeProvider.Now
         };
-
-        var workItem = await UnitOfWork.Repository<WorkItemEntity>().GetAsync(linkedWorkItem.LinkedWorkItemId);
-
-        if (workItem == null) return false;
         
-        workItem.AddLinkedWorker(linkedWorkItem);
+        var sourceWorkItem = await UnitOfWork.Repository<WorkItemEntity>().GetAsync(linkedWorkItem.WorkItemId);
+        var destinationWorkItem = await UnitOfWork.Repository<WorkItemEntity>().GetAsync(linkedWorkItem.LinkedWorkItemId);
+        
+        if (sourceWorkItem == null || destinationWorkItem == null) return false;
+        
+        sourceWorkItem.AddLinkedWorker(linkedWorkItem);
+        
+        var destinationLinkedWorkItem = sourceWorkItem.CreateDestinationLinkedWorker(linkedWorkItem);
         
         await UnitOfWork.Repository<LinkedWorkItemEntity>().AddAsync(linkedWorkItem);
+        await UnitOfWork.Repository<LinkedWorkItemEntity>().AddAsync(destinationLinkedWorkItem);
         
         var effectedRows = await UnitOfWork.SaveChangesAsync();
         

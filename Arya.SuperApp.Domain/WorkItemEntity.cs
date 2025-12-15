@@ -18,7 +18,7 @@ public class WorkItemEntity : EntityBase, IEntity
 
     public void AddLinkedWorker(LinkedWorkItemEntity linkedWorker)
     {
-        if (linkedWorker.WorkItemId == Id)
+        if (linkedWorker.LinkedWorkItemId == Id)
         {
             throw new InvalidOperationException("Cannot link to own WorkItem");
         }
@@ -29,5 +29,22 @@ public class WorkItemEntity : EntityBase, IEntity
         }
         
         LinkedWorkers.Add(linkedWorker);
+    }
+
+    public LinkedWorkItemEntity CreateDestinationLinkedWorker(LinkedWorkItemEntity sourceLinkedWorker)
+    {
+        return new LinkedWorkItemEntity
+        {
+            WorkItemId = sourceLinkedWorker.LinkedWorkItemId,
+            LinkedWorkItemId = Id,
+            LinkType = Enum.Parse<WorkItemLinkTypes>(sourceLinkedWorker.LinkType) switch
+            {
+                WorkItemLinkTypes.Parent => nameof(WorkItemLinkTypes.Child),
+                WorkItemLinkTypes.Child => nameof(WorkItemLinkTypes.Parent),
+                WorkItemLinkTypes.Dependent => nameof(WorkItemLinkTypes.Successor),
+                _ => nameof(WorkItemLinkTypes.Related)
+            },
+            CreatedOn = sourceLinkedWorker.CreatedOn
+        };
     }
 }
