@@ -9,6 +9,10 @@ internal class LinkWorkItemHandler(IUnitOfWork unitOfWork, ILoggerFactory logger
 {
     protected override async Task<bool> ExecuteAsync(LinkWorkItemRequest request)
     {
+        var existedLinkedWorkItem = await UnitOfWork.Repository<LinkedWorkItemEntity>().ListWithConditionAsync(p => p.LinkedWorkItemId == request.LinkedWorkItemId && p.WorkItemId == request.WorkItemId, p => p);
+        
+        if(existedLinkedWorkItem.Any()) return false;
+        
         var linkedWorkItem = new LinkedWorkItemEntity
         {
             WorkItemId = request.WorkItemId,
