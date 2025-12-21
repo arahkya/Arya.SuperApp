@@ -1,0 +1,19 @@
+#sidenav-container {
+    background-color: #5A7ACD;
+    color: white;
+
+}
+
+.sidenav-item {
+    padding: 10px 1rem;
+}
+
+.sidenav-item:first-child{
+    margin-top: 5px;
+}
+
+.sidenav-item:hover {
+    background-color: cornflowerblue;
+    color: black;
+    cursor: pointer;
+}

@@ -1,0 +1,16 @@
+﻿<div id="pagehead-container">
+    <div id="page-header-title">
+        <h3>@Title</h3>
+    </div>
+
+    <div id="pagehead-menus">
+        <div class="pagehead-menu-item">LIST</div>
+        <div class="pagehead-menu-item active">NEW</div>
+        <div class="pagehead-menu-item">SEARCH</div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = string.Empty;
+}

@@ -1,0 +1,13 @@
+#topbar-container {
+    background-color: #2B2A2A;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+#topbar-title {
+    padding-left: 1rem;
+    letter-spacing: .15rem;
+    font-weight: bold;
+    color:white;
+}
